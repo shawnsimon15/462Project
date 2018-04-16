@@ -10,6 +10,7 @@ import requests
 import json
 import traceback
 import feedparser
+import twitter
 
 from PIL import Image, ImageTk
 from contextlib import contextmanager
@@ -206,6 +207,15 @@ class Weather(Frame):
     def convert_kelvin_to_fahrenheit(kelvin_temp):
         return 1.8 * (kelvin_temp - 273) + 32
 
+class Twitter:
+
+    def __init__(self):
+        api = twitter.Api(consumer_key = "AvsL4b7yJEDRK66xzt6pVIqC4"
+                          consumer_secret = "smilhAzRedf8hYFouuS1rCobqlHZDZay0jegReEsw6u08GBq34"
+                          acces_token_key = "879716976876191744-YAJKz8mPFXKsXH0GmGH9qsNwzRMNN36"
+                          access_token_secret = "oy4Bg42fytK62do2cWPxiiZBAY3q5JjqAUu2fjuUWA8gL")
+        self.api = api
+
 class FullscreenWindow:
 
     def __init__(self):
@@ -244,4 +254,3 @@ class FullscreenWindow:
 if __name__ == '__main__':
     w = FullscreenWindow()
     w.tk.mainloop()
-    

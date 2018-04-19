@@ -20,7 +20,7 @@ LOCALE_LOCK = threading.Lock()
 ui_locale = '' # e.g. 'fr_FR' fro French, '' as default
 time_format = 12 # 12 or 24
 date_format = "%b %d, %Y" # check python doc for strftime() for options
-weather_api_token = '<TOKEN>' # create account at https://darksky.net/dev/
+weather_api_token = 'fc98e2d32d803902c0e85a91910c632f' # create account at https://darksky.net/dev/
 weather_lang = 'en' # see https://darksky.net/dev/docs/forecast for full list of language parameters values
 weather_unit = 'us' # see https://darksky.net/dev/docs/forecast for full list of unit parameters values
 latitude = None # Set this if IP location lookup does not work for you (must be a string)
@@ -216,6 +216,15 @@ class Twitter:
                           access_token_secret = "oy4Bg42fytK62do2cWPxiiZBAY3q5JjqAUu2fjuUWA8gL")
         self.api = api
 
+    def viewElonTweets(self):
+        try:
+            elonTweets = self.api.GetUserTimeline("@elonmusk", 200)
+        except twitter.error.TwitterError as error:
+            print(str(error))
+        for tweet in elonTweets:
+            # do something with tweet.text
+
+
 class FullscreenWindow:
 
     def __init__(self):
@@ -234,9 +243,9 @@ class FullscreenWindow:
         # weather
         self.weather = Weather(self.topFrame)
         self.weather.pack(side=LEFT, anchor=N, padx=100, pady=60)
-        # news
-        self.news = News(self.bottomFrame)
-        self.news.pack(side=LEFT, anchor=S, padx=100, pady=60)
+        # news - removed
+        # self.news = News(self.bottomFrame)
+        # self.news.pack(side=LEFT, anchor=S, padx=100, pady=60)
         # calender - removing for now
         # self.calender = Calendar(self.bottomFrame)
         # self.calender.pack(side = RIGHT, anchor=S, padx=100, pady=60)
